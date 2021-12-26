@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Tests\\Feature\\UserManagementTest::test_example":3,"Tests\\Feature\\UserManagementTest::testUserCanBeCreated":5},"times":{"Tests\\Feature\\UserManagementTest::test_example":0.454,"Tests\\Feature\\UserManagementTest::testUserCanBeCreated":0.674}}
