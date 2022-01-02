@@ -16,36 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact('users'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('users.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:email',
-            'password' => 'required',
-        ]);
-
-        $user = User::create($data);
-
-        //return redirect('/users')->with([ 'message' => 'Usuario creado correctamente', 'message_type' => MESSAGE_SUCCESS ]);
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -56,7 +27,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -68,7 +39,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -80,19 +50,6 @@ class UserController extends Controller
 
         $user->fill($request->all())->save();
 
-        return redirect()->back();
-        //return redirect('/users')->with([ 'message' => 'Usuario creado correctamente', 'message_type' => MESSAGE_SUCCESS ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        $user->delete();
-        //return redirect('/users')->with([ 'message' => 'Usuario creado correctamente', 'message_type' => MESSAGE_SUCCESS ]);
+        return redirect('/admin/users')->with('success', 'Usuario actualizado correctamente');
     }
 }

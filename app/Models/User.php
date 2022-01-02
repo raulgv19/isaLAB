@@ -11,6 +11,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    const ROLE_ADMIN = 'Admin';
+    const ROLE_SOCIO = 'Socio';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -40,4 +43,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /* Add User - Role Relation */
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
+
+    /* Add User - Activity Relation */
+    public function activities(){
+        return $this->belongsToMany(Activity::class);
+    }
+
 }

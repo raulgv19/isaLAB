@@ -1,124 +1,112 @@
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{env('APP_NAME')}}</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('vendor/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{asset('vendor/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('vendor/dist/css/adminlte.min.css')}}">
-</head>
-<body class="hold-transition layout-top-nav">
-<div class="wrapper">
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
-    <div class="container">
-      <a href="/" class="navbar-brand">
-        <img src="{{asset('media/img/baselogo.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{env('APP_NAME')}}</span>
-      </a>
-
-      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="#" class="nav-link">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Contact</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="#" class="dropdown-item">Some action </a></li>
-              <li><a href="#" class="dropdown-item">Some other action</a></li>
-
-              <li class="dropdown-divider"></li>
-
-              <!-- Level two dropdown-->
-              <li class="dropdown-submenu dropdown-hover">
-                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
-                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                  <li>
-                    <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
-                  </li>
-
-                  <!-- Level three dropdown-->
-                  <li class="dropdown-submenu">
-                    <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
-                    <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                      <li><a href="#" class="dropdown-item">3rd level</a></li>
-                      <li><a href="#" class="dropdown-item">3rd level</a></li>
-                    </ul>
-                  </li>
-                  <!-- End Level three -->
-
-                  <li><a href="#" class="dropdown-item">level 2</a></li>
-                  <li><a href="#" class="dropdown-item">level 2</a></li>
-                </ul>
-              </li>
-              <!-- End Level two -->
-            </ul>
-          </li>
-        </ul>
+@extends('layouts.app')
+@section('content')
+<!-- Content Header (Page header) -->
+<div class="content-header">
+   <div class="container">
+      <div class="row mb-2">
+         <div class="col-sm-6">
+            <h1 class="m-0"> </h1>
+         </div>
+         <!-- /.col -->
+         <div class="col-sm-6">
+         </div>
+         <!-- /.col -->
       </div>
-
-      <!-- Right navbar links -->
-      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fas fa-power-off"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    @yield('content')
-  </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <div class="d-none d-sm-inline">
-        <span>Copyright - Healthy Gyms &copy; 2021.</strong> All rights reserved.</span>
-    </div>
-  </footer>
+      <!-- /.row -->
+   </div>
+   <!-- /.container-fluid -->
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="{{asset('vendor/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('vendor/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('vendor/dist/js/adminlte.min.js')}}"></script>
-</body>
-</html>
+<!-- /.content-header -->
+<!-- Main content -->
+<div class="content">
+   <div class="container">
+   @if (session('success'))
+      <div class="alert alert-primary alert-dismissible fade show" role="alert" id="exito-creado">
+         {{ \Session::get('success') }}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      @endif
+      <div class="row">
+         @if (\App\Http\Controllers\DashboardController::isClient(auth()->user()->id))
+         <div class="col-12">
+            <div class="row">
+               @foreach ($activities as $activity)
+               <div class="col-lg-3">
+                  <div class="card actividad">
+                     <div class="nombre-actividad">
+                        <p>{{$activity->name}} <span class="activity-duration">{{$activity->duration}}min</span></p>
+                     </div>
+                     <div class="card-body table-responsive p-0">
+                        <p class="texto-silenciado">{{$activity->schedule}}  <span class="activity-capacity">{{$activity->capacity}} plazas restantes</span></p>
+                        <form method="POST" action="{{ route('reserva.store') }}">
+                           @csrf
+                           <input type="hidden" value="{{auth()->user()->id}}" name="userID">
+                           <input type="hidden" value="{{$activity->id}}" name="activityID">
+                           @if (\App\Http\Controllers\DashboardController::alreadyBooked($activity->id,auth()->user()->id))
+                           @else
+                           <button type="submit" class="reserva-actividad">Reservar</button>
+                           @endif
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               @endforeach
+            </div>
+            <!-- /.card -->
+         </div>
+         <div class="col-12">
+            <p><b>Tu asistencia esta semana</b></p>
+            <div class="card">
+               <div class="card-body table-responsive p-0">
+                  <ul id="activity-tracker">
+                     <li class="track-weekday">L</li>
+                     <li class="track-weekday">M</li>
+                     <li class="track-weekday">X</li>
+                     <li class="track-weekday">J</li>
+                     <li class="active-track-weekday">V</li>
+                     <li class="track-weekday">S</li>
+                     <li class="track-weekday">D</li>
+                  </ul>
+               </div>
+               <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+         </div>
+         <div class="col-12">
+            <p><b>Reservas para esta semana</b></p>
+            <div class="card">
+               <div class="messages-box">
+                  <div class="list-group rounded-0">
+                     @foreach ($bookedActivities as $bookedActivity)
+                     <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0 aviso-clase-reservada">
+                        <div class="media">
+                           <img src="{{ asset('/media/img/login-img.png') }}" alt="user" width="50" class="rounded-circle">
+                           <div class="media-body ml-4">
+                              <div class="d-flex align-items-center justify-content-between mb-1">
+                                 <h6 class="mb-0">{{$bookedActivity->instructor_name}}</h6>
+                                 <form id="delete-form" method="POST" action="{{ route('reserva.destroy', $bookedActivity->activity_id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger" value="Cancelar reserva">
+                                 </form>
+                              </div>
+                              <p class="text-muted mb-0 text-small" style="opacity: 65%;">Sera tu instructor para la clase de {{$bookedActivity->name}} </p>
+                           </div>
+                        </div>
+                     </a>
+                     @endforeach
+                  </div>
+               </div>
+            </div>
+         </div>
+         @else
+         @endif
+      </div>
+      <!-- /.row -->
+   </div>
+   <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+@endsection
