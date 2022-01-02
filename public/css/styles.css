@@ -1,0 +1,86 @@
+
+
+#activity-tracker{
+    list-style: none;
+    margin: 0 auto;
+    padding-inline-start: 0;
+}
+.track-weekday{
+    display: inline-block;
+    margin-right: 2px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    text-align: center;
+    background-color: #68708a;
+    color: white;
+    border-radius: 200px;
+}
+.active-track-weekday{
+    display: inline-block;
+    margin-right: 2px;
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    text-align: center;
+    background-color: #34ad14;
+    color: white;
+    border-radius: 200px;
+}
+
+.card{
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.nombre-actividad{
+    font-size: 20px;
+}
+.actividad{
+    background-color: #68708a;
+    color: white;
+    padding: 20px;
+    height: 165px;
+}
+.texto-silenciado{
+    opacity: 65%;;
+}
+.aviso-clase-reservada{
+    border-radius: 10px !important;
+    border: none;
+    margin-bottom: 10px;
+}
+.reserva-actividad{
+    color: white;
+    font-weight: 500;
+    float: right;
+    background-color: transparent;
+    border: none;
+}
+
+.activity-duration{
+    float:right;
+    font-size: 16px;
+    opacity: 0.50;
+}
+
+.activity-capacity{
+    float:right;
+    color: white;
+}
+
+.boton{
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: none;
+}
+
+.add-btn{
+    padding: 5px 7px;
+    border-radius: 5px;
+    float: right;
+}
+
+.card-footer {
+    background-color: transparent !important;
+}
