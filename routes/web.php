@@ -27,7 +27,6 @@ Route::resource('/reserva', ReservationController::class)->except(['index','show
 Route::resource('/dashboard', DashboardController::class)->except(['show'])->middleware(['auth']);
 Route::resource('/admin/users', UserController::class)->only(['index','edit','update'])->middleware(['auth','admin']);
 Route::resource('/admin/activities', ActivityAdminController::class)->except(['show'])->middleware(['auth','admin']);
-//Route::resource('users', UserController::class)->except(['show'])->middleware(['auth','socio']);
 
 Route::get('logout', function ()
 {
