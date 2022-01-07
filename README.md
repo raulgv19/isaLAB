@@ -14,7 +14,7 @@ Docker development implementation for Laravel 8.\* with:
 - Copy `.env` file: `cp .env.example .env`
 - Set the environment variables in `.env` file
 - Run command: `docker-compose up --build -d`
--  Run the container in bash mode: `docker exec -it Laravel_php /bin/sh`
+-  Run the container in bash mode: `docker exec -it isa_php /bin/sh`
 - Inside this container now you can run all the commands as if if you are on local environment:
 - Install composer dependencies: `composer install`
 - Generate key: `php artisan key:generate`
